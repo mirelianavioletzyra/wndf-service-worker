@@ -2,6 +2,16 @@ import { Router } from '@edgio/core'
 import { starterRoutes } from '@edgio/starter'
 
 export default new Router()
+  .match(
+    { path: ["/browser.js", "/service-worker.js"] },
+    {
+      headers: {
+        add_response_headers: {
+          "access-control-allow-origin": "*"
+        }
+      },
+    }
+  )
   .use(starterRoutes)
   .match('/', {
     response: {
@@ -21,7 +31,4 @@ export default new Router()
   })
   .match('/browser.js', ({ serveStatic }) => {
     serveStatic('/dist/browser.js')
-  })
-  .match('/service-worker.js', ({ serviceWorker }) => {
-    serviceWorker('dist/service-worker.js')
   })
