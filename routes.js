@@ -32,3 +32,4 @@ export default new Router()
   .match('/browser.js', ({ serveStatic }) => {
     serveStatic('/dist/browser.js')
   })
+  
