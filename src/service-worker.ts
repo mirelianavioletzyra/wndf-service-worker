@@ -18,7 +18,12 @@ new Prefetcher({
         as: 'script',
         maxMatches: 25,
         attribute: 'src',
-        selector: 'script[src]'
+        selector: 'script[src]',
+        callback: ({ $el }) => {
+          const src = $el.attr('src')
+          if (src && src !== 'https://rum.edgio.net/latest.js')
+            prefetch(src)
+        }
       },
       {
         // PDP thumbnails
