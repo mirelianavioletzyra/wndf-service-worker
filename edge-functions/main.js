@@ -27,3 +27,4 @@ export async function handleHttpRequest(request) {
   // Or you can just return the original response to the client
   // return resp
 }
+
